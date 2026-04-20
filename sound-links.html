@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sound on Link Click</title>
+
+<style>
+body {
+    background: #0b6e3f;
+    color: white;
+    font-family: sans-serif;
+    padding: 40px;
+}
+
+a {
+    display: inline-block;
+    margin: 20px;
+    padding: 12px 20px;
+    background: white;
+    color: black;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+img {
+    width: 200px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Click any link</h1>
+
+<a href="https://sites.google.com/banlydealers.com/stables/player-waiting-list">
+    <img src="image1.jpg" alt="Player Waiting List">
+</a>
+
+<a href="https://sites.google.com/banlydealers.com/stables/killer">
+    <img src="image2.jpg" alt="Killer">
+</a>
+
+<a href="https://sites.google.com/banlydealers.com/stables/league-match">
+    <img src="image3.jpg" alt="League Match">
+</a>
+
+<script>
+const SOUND_URL =
+  "https://www.dropbox.com/scl/fi/px9iq46e3gyu7lgkastct/Neigh.mp3?rlkey=zravun3in9mpcz9b6mbaf3hki&raw=1";
+
+document.addEventListener("click", function(event) {
+    const link = event.target.closest("a");
+    if (!link) return;
+
+    event.preventDefault();
+
+    const audio = new Audio(SOUND_URL);
+    audio.play().catch(()=>{});
+
+    setTimeout(() => {
+        window.location.href = link.href;
+    }, 300);
+});
+</script>
+
+</body>
+</html>
