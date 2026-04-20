@@ -51,13 +51,22 @@ img {
 const SOUND_URL =
   "https://www.dropbox.com/scl/fi/px9iq46e3gyu7lgkastct/Neigh.mp3?rlkey=zravun3in9mpcz9b6mbaf3hki&raw=1";
 
+let audio = new Audio(SOUND_URL);
+
+// Prime the audio on first user interaction
+document.addEventListener("mousedown", () => {
+    audio.play().catch(()=>{});
+    audio.pause();
+    audio.currentTime = 0;
+}, { once: true });
+
 document.addEventListener("click", function(event) {
     const link = event.target.closest("a");
     if (!link) return;
 
     event.preventDefault();
 
-    const audio = new Audio(SOUND_URL);
+    audio.currentTime = 0;
     audio.play().catch(()=>{});
 
     setTimeout(() => {
